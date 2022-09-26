@@ -1,6 +1,7 @@
 %module Source
 
 extern Window createWindow(int x, int y, int width, int height, int border, long borderColor, long rgb);
+extern Window getParentWindow();
 extern long rgb(int r, int g, int b);
 extern long red();
 extern long green();
