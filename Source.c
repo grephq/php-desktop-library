@@ -37,6 +37,7 @@ long black() {
 
 int start(int x, int y, int width, int height, int border, long borderColor, long rgb, char[] windowTitle) {
 	Window window;
+	XEvent xev;
 
 	if((display = XOpenDisplay(NULL)) == NULL) {
 		printf("%s\n", "Couldn't open display");
@@ -51,6 +52,10 @@ int start(int x, int y, int width, int height, int border, long borderColor, lon
 	XSetStandardProperties(display, window, windowTitle, "", None, NULL, 0, NULL);
 	/* Map window to display server */
 	XMapWindow(display, window);
+
+	while(True) {
+		XNextEvent(display, &xev);
+	}
 
 	/* Unmap window */
 	XUnmapWindow(display, window);
