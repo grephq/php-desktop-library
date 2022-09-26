@@ -7,12 +7,32 @@ static Window root;
 static int screen;
 
 Window createWindow(int x, int y, int width, int height, int border, long borderColor, long rgb) {
-	Window window = XCreateSimpleWindow(display, root, x, y, width, height, border, borderColor, rgb);
+	Window window = XCreateSimpleWindow(display, root, x, y, width, height, border, (long) borderColor, (long) rgb);
 	return window;
 }
 
 long rgb(int r, int g, int b) {
 	return b + (g<<8) + (r<<16);
+}
+
+long red() {
+	return rgb(255, 0, 0);
+}
+
+long green() {
+	return rgb(0, 255, 0);
+}
+
+long blue() {
+	return rgb(0, 0, 255);
+}
+
+long white() {
+	return rgb(255, 255, 255);
+}
+
+long black() {
+	return rgb(0, 0, 0);
 }
 
 int start(int x, int y, int width, int height, int border, long borderColor, long rgb, char[] windowTitle) {
