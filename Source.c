@@ -5,6 +5,7 @@
 static Display *display;
 static Window root;
 static int screen;
+static GC gc;
 
 Window createWindow(int x, int y, int width, int height, int border, long borderColor, long rgb) {
 	Window window = XCreateSimpleWindow(display, root, x, y, width, height, border, (long) borderColor, (long) rgb);
@@ -13,6 +14,21 @@ Window createWindow(int x, int y, int width, int height, int border, long border
 
 Window getParentWindow() {
 	return root;
+}
+
+void changeWindowBackground(Window window, long background) {
+	XSetWindowBackground(display, window, background);
+}
+
+void changeWindowBorderColor(Window window, long color) {
+	XSetWindowBorder(display, window, color);
+}
+
+void writeText(char[] text, int x, int y, Window window, long background, long foreground) {
+	gc = XCreateGC(display, window, 0, 0);
+	XSetBackground(display, gc, (long) background);
+	XSetForeground(display, gc, (long) foreground);
+	XDrawString(display, window, gc, x, y, text, strlen(text));
 }
 
 long rgb(int r, int g, int b) {
