@@ -40,7 +40,6 @@ long black() {
 }
 
 int start(int x, int y, int width, int height, int border, long borderColor, long rgb, char[] windowTitle) {
-	Window window;
 	XEvent xev;
 
 	if((display = XOpenDisplay(NULL)) == NULL) {
@@ -48,23 +47,22 @@ int start(int x, int y, int width, int height, int border, long borderColor, lon
 		return 1;
 	}
 
-	/* Get default screen and root window */
+	//  Get default screen and root window
 	screen = DefaultScreen(display);
-	// root = RootWindow(display, screen);
 
-	root = createWindow(x, y, width, height, border, borderColor, rgb);
-	XSetStandardProperties(display, window, windowTitle, "", None, NULL, 0, NULL);
-	/* Map window to display server */
-	XMapWindow(display, window);
+	root = XCreateSimpleWindow(display, RootWindow(display, screen), x, y, width, height, border, (long) borderColor, (long) rgb);
+	XSetStandardProperties(display, root, windowTitle, "", None, NULL, 0, NULL);
+	// Map window to display server
+	XMapWindow(display, root);
 
 	while(True) {
 		XNextEvent(display, &xev);
 	}
 
-	/* Unmap window */
-	XUnmapWindow(display, window);
-	XDestroyWindow(display, window);
-	/* Close connection with display server */
+	// Unmap window
+	XUnmapWindow(display, root);
+	XDestroyWindow(display, root);
+	// Close connection with display server
 	XCloseDisplay(display);
 	return 0;
 }
