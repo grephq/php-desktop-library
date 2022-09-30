@@ -34,4 +34,4 @@ Well, in theory it should work on windows after
 - Installing swig on windows
 - Installing windows version of the gtk library
 - Compiling this library to a dll. You might have to download php source code and manually add/edit/remove references to libraries. Goodluck trying to get this to work. 
-- Move the dll to ```<PHP_INSTALLATION_PATH>/ext/
+- Move the dll to ```<PHP_INSTALLATION_PATH>/ext/```
