@@ -1,14 +1,13 @@
 %module Source
 
-extern Window createWindow(int x, int y, int width, int height, int border, long borderColor, long rgb);
-extern Window getParentWindow();
-extern void changeWindowBackground(Window window, long background);
-extern void changeWindowBorderColor(Window window, long color);
-extern void writeText(char[] text, int x, int y, Window window, long background, long foreground);
-extern long rgb(int r, int g, int b);
-extern long red();
-extern long green();
-extern long blue();
-extern long white();
-extern long black();
-extern int start(int x, int y, int width, int height, int border, long borderColor, long rgb, char[] windowTitle);
+extern void add_button(char label[], int x, int y);
+extern void add_check_button(char label[], int x, int y);
+extern void add_entry(char defaultText[], int x, int y);
+extern void show_message_box(char title[], char message[]);
+extern void add_menu_bar();
+extern void add_radio();
+extern void add_link_button(char link[], char label[], int x, int y);
+extern void add_switch(int active, int x, int y);
+extern void add_label(char text[], int x, int y);
+extern void add_image(char file[], int x, int y);
+extern int start(char title[], int width, int height);
